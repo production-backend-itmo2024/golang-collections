@@ -1,15 +1,20 @@
-//go:build !solution
-
 package list
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+var (
+	ErrEmptyList = errors.New("cant modify empty list")
+)
 
 type IList[T any] interface {
 	Size() int64
 	IsEmpty() bool
 
 	PushBack(elem T) error
-	PopBack(elem T) error
+	PopBack() error
 	Insert(elem T, pos int64) error
 	Erase(pos int64) (T, error)
 }
@@ -27,7 +32,7 @@ func (l *List[T]) PushBack(elem T) error {
 	return fmt.Errorf("implement me")
 }
 
-func (l *List[T]) PopBack(elem T) error {
+func (l *List[T]) PopBack() error {
 	return fmt.Errorf("implement me")
 }
 
