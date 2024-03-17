@@ -18,7 +18,7 @@ func Test_PushBack(t *testing.T) {
 			erasePositions: []int64{},
 			modifyList:     nil,
 			assertFunc: func(t *testing.T, list *List[int64]) {
-				assert.Equal(t, list.Size(), 5)
+				assert.Equal(t, list.Size(), int64(5))
 			},
 		},
 		{
@@ -26,7 +26,7 @@ func Test_PushBack(t *testing.T) {
 			erasePositions: []int64{0, 1, 2},
 			modifyList:     nil,
 			assertFunc: func(t *testing.T, list *List[int64]) {
-				assert.Equal(t, list.Size(), 0)
+				assert.Equal(t, list.Size(), int64(0))
 			},
 		},
 		{
@@ -34,19 +34,19 @@ func Test_PushBack(t *testing.T) {
 			erasePositions: []int64{},
 			modifyList: func(t *testing.T, list *List[int64]) {
 				val, err := list.Erase(0)
-				assert.Equal(t, val, 2)
+				assert.Equal(t, val, int64(2))
 				assert.Nil(t, err)
 
 				val, err = list.Erase(1)
-				assert.Equal(t, val, 6)
+				assert.Equal(t, val, int64(6))
 				assert.Nil(t, err)
 
 				val, err = list.Erase(10)
 				assert.NotNil(t, err)
-				assert.ErrorIs(t, err, ErrEmptyList)
+				assert.ErrorIs(t, err, ErrOutOfRange)
 			},
 			assertFunc: func(t *testing.T, list *List[int64]) {
-				assert.Equal(t, list.Size(), 4)
+				assert.Equal(t, list.Size(), int64(4))
 			},
 		},
 	} {

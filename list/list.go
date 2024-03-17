@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	ErrEmptyList = errors.New("cant modify empty list")
+	ErrEmptyList  = errors.New("cant modify empty list")
+	ErrOutOfRange = errors.New("index out of range")
 )
 
 type IList[T any] interface {
